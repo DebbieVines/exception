@@ -14,7 +14,7 @@ import br.atech.workshop.bestpractices.thirdpart1.DataException;
 import br.atech.workshop.bestpractices.thirdpart1.DataProvider;
 
 /**
- * @author spac2
+ * @author 
  * 
  */
 public class LegacyDataProvider implements DataProvider<Integer> {
@@ -59,9 +59,6 @@ public class LegacyDataProvider implements DataProvider<Integer> {
 	}
 
 	private InputStream connect(URL url) throws IOException {
-		// PING
-		url.openConnection().getInputStream().read();
-
 		return Legacy.getInputStream(url);
 	}
 }

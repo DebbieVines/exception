@@ -1,7 +1,5 @@
 package br.atech.workshop.bestpractices.gui;
 
-//Imports are listed in full to show what's being used
-//could just import javax.swing.* and java.awt.* etc..
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,6 +12,11 @@ import javax.swing.JTextField;
 
 import br.atech.workshop.bestpractices.app.App;
 
+/**
+ * 
+ * @author marcio
+ * 
+ */
 public class Gui {
 
 	private final JFrame guiFrame;

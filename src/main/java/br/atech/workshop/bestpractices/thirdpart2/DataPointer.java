@@ -13,7 +13,7 @@ import br.atech.workshop.bestpractices.thirdpart1.DataException;
 
 /**
  * 
- * @author spac2
+ * @author marcio
  * 
  */
 public class DataPointer {

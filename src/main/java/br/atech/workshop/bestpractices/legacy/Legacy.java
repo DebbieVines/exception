@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * @author spac2
+ * @author marcio
  * 
  */
 public class Legacy {
@@ -46,7 +46,11 @@ public class Legacy {
 
 	static int counter;
 	
-	public static InputStream getInputStream(URL conn) {
+	public static InputStream getInputStream(URL conn) throws IOException {
+		
+		// it really tests the connection  
+		conn.openConnection().getInputStream().read();
+		
 		if (conn.toString().contains("system1")) {
 			return new ByteArrayInputStream(
 					"fulano 0\nbeltrano 2\ncicrano 3".getBytes());
