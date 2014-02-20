@@ -12,7 +12,7 @@ import br.atech.workshop.bestpractices.thirdpart2.DataPointer;
 
 /**
  * 
- * @author spac2
+ * @author marcio
  * 
  */
 public class LegacyDataIterator implements Iterator<Integer> {

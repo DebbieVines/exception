@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 /**
  * 
- * @author spac2
+ * @author marcio
  * 
  * @param <T>
  */

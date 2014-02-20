@@ -9,7 +9,7 @@ import br.atech.workshop.bestpractices.thirdpart1.DataProvider;
 import br.atech.workshop.bestpractices.thirdpart1.DataProviderFactory;
 
 /**
- * @author spac2
+ * @author marcio
  * 
  */
 public class Boot {

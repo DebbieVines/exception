@@ -1,5 +1,10 @@
 package br.atech.workshop.bestpractices.app;
 
+/**
+ * 
+ * @author marcio
+ *
+ */
 public class AppException extends Exception {
 
 	private static final long serialVersionUID = 1L;

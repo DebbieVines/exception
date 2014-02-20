@@ -9,7 +9,7 @@ import br.atech.workshop.bestpractices.thirdpart1.DataException;
 import br.atech.workshop.bestpractices.thirdpart1.DataProvider;
 
 /**
- * @author spac2
+ * @author marcio
  * 
  */
 public class App {

@@ -14,7 +14,7 @@ import br.atech.workshop.bestpractices.thirdpart1.DataException;
 import br.atech.workshop.bestpractices.thirdpart1.DataProvider;
 
 /**
- * @author 
+ * @author marcio
  * 
  */
 public class LegacyDataProvider implements DataProvider<Integer> {

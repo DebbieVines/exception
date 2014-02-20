@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 /**
  * 
- * @author spac2
+ * @author marcio
  * 
  */
 abstract class BaseAction implements ActionListener {

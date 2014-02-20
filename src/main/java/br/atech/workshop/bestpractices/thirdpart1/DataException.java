@@ -4,7 +4,7 @@
 package br.atech.workshop.bestpractices.thirdpart1;
 
 /**
- * @author spac2
+ * @author marcio
  * 
  */
 public class DataException extends Exception {
