@@ -61,4 +61,14 @@ public class LegacyDataProvider implements DataProvider<Integer> {
 	private InputStream connect(URL url) throws IOException {
 		return Legacy.getInputStream(url);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see br.atech.workshop.bestpractices.thirdpart1.DataProvider#getName()
+	 */
+	@Override
+	public String getName() {
+		String[] parts = url.toString().split("/");
+		return parts[parts.length-2] + "/" + parts[parts.length-1];
+	}
 }

@@ -32,8 +32,7 @@ public class App {
 		try {
 			StringBuilder sb = new StringBuilder();
 
-			Iterator<Integer> data;
-			data = provider.getData(query);
+			Iterator<Integer> data = provider.getData(query);
 			while (data.hasNext()) {
 				Integer part = data.next();
 				if (part != null) {
@@ -44,7 +43,13 @@ public class App {
 
 			return sb.toString();
 		} catch (DataException e) {
-			throw new AppException(e);
+			throw new InfoRequestException(provider, e);
+//		} catch (RuntimeException e) {
+//			if (e.getClass().equals(RuntimeException.class)) {
+//				throw new InfoRequestException(provider, e);
+//			} else {
+//				throw e;
+//			}
 		}
 	}
 

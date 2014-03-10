@@ -3,6 +3,7 @@
  */
 package br.atech.workshop.bestpractices.thirdpart1;
 
+
 /**
  * @author marcio
  * 
@@ -15,7 +16,7 @@ public class DataException extends Exception {
 	 * 
 	 */
 	public DataException() {
-		// TODO Auto-generated constructor stub
+		this("Data error.");
 	}
 
 	/**

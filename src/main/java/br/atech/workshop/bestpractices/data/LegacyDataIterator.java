@@ -38,13 +38,13 @@ public class LegacyDataIterator implements Iterator<Integer> {
 		try {
 			return !pointer.eof();
 		} catch (IOException e) {
-			// return null;
+			// return false;
 
-			System.err.println("FATAL ERROR.");
-			e.printStackTrace();
-			return false;
+			// System.err.println("FATAL ERROR.");
+			// e.printStackTrace();
+			// return false;
 
-			// throw new RuntimeException("FATAL ERROR.", e);
+			throw new RuntimeException("FATAL ERROR.", e);
 		}
 	}
 
@@ -60,11 +60,11 @@ public class LegacyDataIterator implements Iterator<Integer> {
 		} catch (IOException e) {
 			// return null;
 
-			System.err.println("FATAL ERROR.");
-			e.printStackTrace();
-			return null;
+			// System.err.println("FATAL ERROR.");
+			// e.printStackTrace();
+			// return null;
 
-			// throw new RuntimeException("FATAL ERROR.", e);
+			throw new RuntimeException("FATAL ERROR.", e);
 		}
 	}
 

@@ -1,6 +1,7 @@
 package br.atech.workshop.bestpractices.gui;
 
 import br.atech.workshop.bestpractices.app.AppException;
+import br.atech.workshop.bestpractices.app.InfoRequestException;
 import br.atech.workshop.bestpractices.thirdpart1.DataException;
 
 /**
@@ -44,15 +45,23 @@ public class ExceptionHandler {
 			err = err.getCause();
 		}
 
-		String msg;
+//		if (err instanceof InfoRequestException) {
+//			return "Resource error: "
+//					+ ((InfoRequestException) err).getProvider();
+//		}
+
 		if (err instanceof AppException) {
-			msg = "Application error.";
-		} else if (err instanceof DataException) {
-			msg = "Data error.";
-		} else {
-			msg = "System Error. Please notify sysadmin";
+			return "Could not answer to your request.";
 		}
 
-		return msg;
+		if (err instanceof DataException) {
+			return "Could not access the data to answer to your request.";
+		}
+
+		if (err instanceof RuntimeException) {
+			return "System internal error. Notify sysadmin";
+		}
+
+		return "System Error.";
 	}
 }

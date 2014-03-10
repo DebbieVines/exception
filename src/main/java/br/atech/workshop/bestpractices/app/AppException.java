@@ -10,7 +10,7 @@ public class AppException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	public AppException() {
-		super();
+		this("Application error.");
 	}
 
 	public AppException(String message, Throwable cause,

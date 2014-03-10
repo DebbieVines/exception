@@ -17,4 +17,10 @@ public interface DataProvider<T> {
 	 * @throws DataException
 	 */
 	Iterator<T> getData(String query) throws DataException;
+	
+	/**
+	 * 
+	 * @return
+	 */
+	String getName();
 }
