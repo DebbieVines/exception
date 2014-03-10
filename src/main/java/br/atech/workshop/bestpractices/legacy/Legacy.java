@@ -46,29 +46,26 @@ public class Legacy {
 
 	static int counter;
 	
-	public static InputStream getInputStream(URL conn) throws IOException {
-		
+	public static InputStream getInputStream(URL conn) throws IOException {	
 		// it really tests the connection  
 		conn.openConnection().getInputStream().read();
 		
-		if (conn.toString().contains("system1")) {
-			return new ByteArrayInputStream(
-					"fulano 0\nbeltrano 2\ncicrano 3".getBytes());
-
-		} else if (conn.toString().contains("system2")) {
+		 if (conn.toString().contains("system2")) {
 			counter++;
 
 			if (counter <= 3) {
-				return new ByteArrayInputStream("beltrano a\ncicrano ".getBytes());
+				return new ByteArrayInputStream("maria 20\njose a".getBytes());
 			} else if (counter <= 6) {
 				return null;
 			} else if (counter <= 9) {
 				return new FakeInputStream();
 			} else {
 				counter = 0;
+				throw new IOException();
 			}
-		}
-
-		return null;
+		} else {
+			return new ByteArrayInputStream(
+					"joao 0\nmaria 2\njose 3\n".getBytes());
+		} 
 	}
 }

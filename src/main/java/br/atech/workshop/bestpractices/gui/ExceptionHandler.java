@@ -46,21 +46,17 @@ public class ExceptionHandler {
 		}
 
 //		if (err instanceof InfoRequestException) {
-//			return "Resource error: "
+//			return "Could not answer to your request. Due to a resource error: "
 //					+ ((InfoRequestException) err).getProvider();
 //		}
 
-		if (err instanceof AppException) {
-			return "Could not answer to your request.";
-		}
+//		if (err instanceof AppException) {
+//			return "Could not answer to your request.";
+//		}
 
-		if (err instanceof DataException) {
-			return "Could not access the data to answer to your request.";
-		}
-
-		if (err instanceof RuntimeException) {
-			return "System internal error. Notify sysadmin";
-		}
+//		if (err instanceof RuntimeException) {
+//			return "System internal error. Notify sysadmin";
+//		}
 
 		return "System Error.";
 	}

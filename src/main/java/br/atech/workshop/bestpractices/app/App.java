@@ -43,7 +43,10 @@ public class App {
 
 			return sb.toString();
 		} catch (DataException e) {
-			throw new InfoRequestException(provider, e);
+			throw new AppException(e);
+			
+//			throw new InfoRequestException(provider, e);
+			
 //		} catch (RuntimeException e) {
 //			if (e.getClass().equals(RuntimeException.class)) {
 //				throw new InfoRequestException(provider, e);
