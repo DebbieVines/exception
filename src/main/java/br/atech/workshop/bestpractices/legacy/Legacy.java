@@ -65,7 +65,7 @@ public class Legacy {
 			}
 		} else {
 			return new ByteArrayInputStream(
-					"joao 0\nmaria 2\njose 3\n".getBytes());
+					"joao 0\nmaria 2\njose 3\njoao 13\n".getBytes());
 		} 
 	}
 }
