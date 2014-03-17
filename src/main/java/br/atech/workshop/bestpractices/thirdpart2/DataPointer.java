@@ -42,6 +42,7 @@ public class DataPointer {
 	private void prepare() throws IOException {
 		if (reader == null) {
 			reader = new BufferedReader(new InputStreamReader(input));
+			System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 			doSkip();
 		}
 	}
@@ -90,6 +91,9 @@ public class DataPointer {
 	private void doSkip() throws IOException {
 		do {
 			next = reader.readLine();
+			if (next != null){
+				System.out.println((next.startsWith(query) ? ">" : " ") + next);
+			}
 		} while (next != null && !next.startsWith(query));
 
 		if (next != null) {

@@ -30,8 +30,9 @@ public class App {
 	private String requestInformation(DataProvider<Integer> provider,
 			String query) throws AppException {
 		try {
-			StringBuilder sb = new StringBuilder();
+			provider.connect();
 
+			StringBuilder sb = new StringBuilder();
 			Iterator<Integer> data = provider.getData(query);
 			while (data.hasNext()) {
 				Integer part = data.next();
@@ -46,13 +47,15 @@ public class App {
 			throw new AppException(e);
 			
 //			throw new InfoRequestException(provider, e);
-			
+//			
 //		} catch (RuntimeException e) {
 //			if (e.getClass().equals(RuntimeException.class)) {
 //				throw new InfoRequestException(provider, e);
 //			} else {
 //				throw e;
 //			}
+		} finally {
+			provider.releaseConnection();
 		}
 	}
 

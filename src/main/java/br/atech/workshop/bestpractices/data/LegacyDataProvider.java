@@ -20,6 +20,7 @@ import br.atech.workshop.bestpractices.thirdpart1.DataProvider;
 public class LegacyDataProvider implements DataProvider<Integer> {
 
 	private URL url;
+	private InputStream conn;
 
 	/**
 	 * 
@@ -44,31 +45,51 @@ public class LegacyDataProvider implements DataProvider<Integer> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * br.atech.workshop.bestpractices.data.DataProvider#getData(java.lang.String
-	 * )
+	 * @see br.atech.workshop.bestpractices.thirdpart1.DataProvider#getData(java.lang.String)
 	 */
-	@Override
+	@Override 
 	public Iterator<Integer> getData(String query) throws DataException {
-		try { 
-			return new LegacyDataIterator(connect(url), query);
-		} catch (IOException e) {
-			throw new DataException(e);
-		}
+		return new LegacyDataIterator(conn, query);
 	}
 
 	private InputStream connect(URL url) throws IOException {
 		return Legacy.getInputStream(url);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see br.atech.workshop.bestpractices.thirdpart1.DataProvider#getName()
 	 */
 	@Override
 	public String getName() {
 		String[] parts = url.toString().split("/");
-		return parts[parts.length-2] + "/" + parts[parts.length-1];
+		return parts[parts.length - 2] + "/" + parts[parts.length - 1];
+	}
+
+	@Override
+	public LegacyDataProvider connect() throws DataException {
+		if (conn != null) {
+			throw new IllegalStateException("Unreleased connection.");
+		}
+		try {
+			conn = connect(url);
+			return this;
+		} catch (IOException e) {
+			throw new DataException(e);
+		}
+	}
+
+	@Override
+	public LegacyDataProvider releaseConnection() {
+		try {
+			if (conn != null) {
+				conn.close();
+				conn = null;
+			}
+			return this;
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

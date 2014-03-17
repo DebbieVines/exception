@@ -9,7 +9,15 @@ import java.util.Iterator;
  * @param <T>
  */
 public interface DataProvider<T> {
-
+	
+	/**
+	 * 
+	 * @param query
+	 * @return
+	 */
+	DataProvider<T> connect() throws DataException ;
+	
+	
 	/**
 	 * 
 	 * @param query
@@ -23,4 +31,11 @@ public interface DataProvider<T> {
 	 * @return
 	 */
 	String getName();
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	DataProvider<T> releaseConnection();
 }
