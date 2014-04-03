@@ -24,16 +24,20 @@ public class Boot {
 
 			DataProviderFactory factory = new DataProviderFactory();
 
-			DataProvider<Integer> sys1 = factory.getProvider(args[0],
+			DataProvider<Integer> sys1 = factory.getProvider(
+					args.length > 0 ? args[0]
+							: "file:///system1/service",
 					Integer.class);
-			DataProvider<Integer> sys2 = factory.getProvider(args[1],
+			DataProvider<Integer> sys2 = factory.getProvider(
+					args.length > 0 ? args[0]
+							: "ftp://remote-server2:2222/system2/service",
 					Integer.class);
-			DataProvider<Integer> sys3 = factory.getProvider(args[2],
+			DataProvider<Integer> sys3 = factory.getProvider(
+					args.length > 0 ? args[0]
+							: "https://remote-server3:3333/system3/service",
 					Integer.class);
 
-			Gui gui = new Gui(new App(sys1, sys2, sys3));
-
-			gui.show();
+			new Gui(new App(sys1, sys2, sys3)).show();
 
 		} catch (DataException e) {
 			e.printStackTrace();

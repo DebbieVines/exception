@@ -9,7 +9,7 @@ public class InfoRequestException extends AppException {
 	private final String provider;
 	
 	public InfoRequestException(DataProvider<?> provider, Throwable cause) {
-		super("", cause);
+		super(cause.getMessage(), cause);
 		this.provider = provider.getName();
 	}
 

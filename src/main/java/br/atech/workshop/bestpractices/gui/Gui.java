@@ -45,7 +45,7 @@ public class Gui {
 		// make sure the program exits when the frame closes
 		guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		guiFrame.setTitle("Example GUI");
-		guiFrame.setSize(300, 150);
+		guiFrame.setSize(500, 150);
 
 		// This will center the JFrame in the middle of the screen
 		guiFrame.setLocationRelativeTo(null);

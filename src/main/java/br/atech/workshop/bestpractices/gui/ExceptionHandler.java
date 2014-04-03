@@ -2,7 +2,6 @@ package br.atech.workshop.bestpractices.gui;
 
 import br.atech.workshop.bestpractices.app.AppException;
 import br.atech.workshop.bestpractices.app.InfoRequestException;
-import br.atech.workshop.bestpractices.thirdpart1.DataException;
 
 /**
  * 
@@ -27,10 +26,7 @@ public class ExceptionHandler {
 	 */
 	public void handle(Throwable t) {
 		t.printStackTrace();
-
-		String msg = translate(t);
-
-		gui.error(msg);
+		gui.error(translate(t));
 	}
 
 	/**
@@ -45,19 +41,21 @@ public class ExceptionHandler {
 			err = err.getCause();
 		}
 
-//		if (err instanceof InfoRequestException) {
-//			return "Could not answer to your request. Due to a resource error: "
-//					+ ((InfoRequestException) err).getProvider();
-//		}
-
-//		if (err instanceof AppException) {
-//			return "Could not answer to your request.";
-//		}
-
-//		if (err instanceof RuntimeException) {
-//			return "System internal error. Notify sysadmin";
-//		}
-
-		return "System Error.";
+		if (err instanceof InfoRequestException) {
+			if (err.getCause() != null
+					&& err.getCause().getMessage().contains("1404")) {
+				return "Erro de leitura: "
+						+ ((InfoRequestException) err).getProvider();
+			} else {
+				return "Erro de conexão: "
+						+ ((InfoRequestException) err).getProvider();
+			}
+		} else if (err instanceof AppException) {
+			return "Não foi possível processar sua requisição.";
+		} else if (err instanceof RuntimeException) {
+			return "Falha interna. Entre em contato com o administrador do sistema";
+		} else {
+			return "Falha de operação.";
+		}
 	}
 }

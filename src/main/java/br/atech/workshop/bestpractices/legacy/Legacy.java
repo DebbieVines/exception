@@ -16,14 +16,16 @@ public class Legacy {
 
 	public static class FakeInputStream extends InputStream {
 
-		public FakeInputStream() {
-			super();
+		private String url;
+
+		public FakeInputStream(URL conn) {
+			this.url = conn.toString();
 		}
 
 		@Override
 		public synchronized int read(byte[] b, int off, int len)
 				throws IOException {
-			throw new IOException();
+			throw new IOException("READ-ERROR 1404: " + url);
 		}
 
 		@Override
@@ -32,40 +34,40 @@ public class Legacy {
 		}
 	}
 
-	// SYS1 =
-	// new ByteArrayInputStream("fulano 0\nbeltrano 2\ncicrano 3".getBytes());
-
-	// SYS2
-	// new ByteArrayInputStream("beltrano a\ncicrano ".getBytes());
-
-	// UNREACHABLE
-	// null;
-
-	// FAILING
-	// new FakeInputStream();
-
 	static int counter;
-	
-	public static InputStream getInputStream(URL conn) throws IOException {	
-		// it really tests the connection  
-		conn.openConnection().getInputStream().read();
+
+	public static InputStream getInputStream(URL conn) throws IOException {
 		
-		 if (conn.toString().contains("system2")) {
+		if (conn.toString().contains("system1")) {
+			counter = 0;
+			return new ByteArrayInputStream(
+					"joao 1\nmaria 2\njose 3\nmaria 22\n".getBytes());
+		} else if (conn.toString().contains("system2")) {
+			counter = 0;
+			return new ByteArrayInputStream(
+					"joao 11\nmaria 22\njose 33\nmaria 2222\n".getBytes());
+		} else if (conn.toString().contains("system3")) {
 			counter++;
 
-			if (counter <= 3) {
-				return new ByteArrayInputStream("maria 20\njose a".getBytes());
-			} else if (counter <= 6) {
+			if (counter == 1) {
+				// IOException durante a leitura
+				return new FakeInputStream(conn);
+			} else if (counter == 2) {
+				// Comunicação OK
+				return new ByteArrayInputStream(
+						"joao 111\nmaria 222\njose 333\nmaria 222222\n"
+								.getBytes());
+			} else if (counter == 3) {
+				// durante a tentativa de estabelecer conexão.
 				return null;
-			} else if (counter <= 9) {
-				return new FakeInputStream();
 			} else {
+				// IOException durante a tentativa de estabelecer conexão.
 				counter = 0;
 				throw new IOException();
 			}
 		} else {
-			return new ByteArrayInputStream(
-					"joao 0\nmaria 2\njose 3\njoao 13\n".getBytes());
-		} 
+			counter = 0;
+			return conn.openConnection().getInputStream();
+		}
 	}
 }

@@ -1,12 +1,12 @@
 package br.atech.workshop.bestpractices.thirdpart1;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.Enumeration;
-import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.Set;
 
 /**
  * 
@@ -42,12 +42,13 @@ public class DataProviderFactory {
 				Properties info = new Properties();
 				info.load(resource.openStream());
 
-				Set<Entry<Object, Object>> entries = info.entrySet();
-
-				for (Entry<Object, Object> entry : entries) {
-					String protocol = entry.getKey().toString();
-					String implementor = entry.getValue().toString();
-
+				BufferedReader reader = new BufferedReader(new InputStreamReader(resource.openStream()));
+				String line  = reader.readLine();
+				
+				while(line != null) {
+					String protocol = line.split(" ")[0]; 
+					String implementor = line.split(" ")[1]; 
+					
 					if (endpoint.startsWith(protocol)) {
 						@SuppressWarnings("unchecked")
 						Class<DataProvider<T>> implClass = (Class<DataProvider<T>>) Class
@@ -56,6 +57,8 @@ public class DataProviderFactory {
 								String.class).newInstance(endpoint);
 						return provider;
 					}
+					
+					line  = reader.readLine();
 				}
 			}
 
